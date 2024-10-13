@@ -18,3 +18,7 @@ To view the site locally, clone the repository and open the `index.html` file in
 git clone https://github.com/yourusername/portfolio-site.git
 cd portfolio-site
 open index.html
+```
+
+## Contact
+You can contact me at umittafa@hotmail.com
