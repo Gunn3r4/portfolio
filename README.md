@@ -1,8 +1,20 @@
-# portfolio
-My personal portfolio
+# My Portfolio Site
 
-## Table of Content
+This is my portfolio site, showcasing my projects and skills in web development.
 
+## Technologies Used
+- HTML
+- CSS
+- JavaScript
+- [Frameworks or Libraries you used, e.g., React, Bootstrap]
 
-## Summary
-This repository will contain a portfolio website of mine which will redirect to numerous projects. It'll help with getting an internship and/or job.
+## Live Demo
+[Link to your deployed portfolio](https://yourportfolio.com)
+
+## How to Use
+To view the site locally, clone the repository and open the `index.html` file in your browser.
+
+```bash
+git clone https://github.com/yourusername/portfolio-site.git
+cd portfolio-site
+open index.html
