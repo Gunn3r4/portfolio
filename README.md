@@ -31,6 +31,7 @@ cd portfolio-site
 open index.html
 ```
 ## Structure
+```bash
 /portfolio-site
 ├── /assets
 │   ├── /css       # Custom CSS files
@@ -45,6 +46,6 @@ open index.html
 ├── LICENSE        # (If added)
 ├── .gitignore     # Files to be ignored in Git (node_modules, etc.)
 └── package.json   # Dependencies if using a JavaScript framework like React
-
+```
 ## Contact
 You can contact me at umittafa@hotmail.com
