@@ -6,7 +6,18 @@ This is my portfolio site, showcasing my projects and skills in web development.
 - HTML
 - CSS
 - JavaScript
-- [Frameworks or Libraries you used, e.g., React, Bootstrap]
+- Typescript
+- Java
+- PHP
+- Python
+
+### Frameworks
+- Bootstrap
+- Springboot
+- H2
+- Vue
+- Angeler
+- node.js
 
 ## Live Demo
 [Link to your deployed portfolio](https://yourportfolio.com)
