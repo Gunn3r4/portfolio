@@ -26,7 +26,7 @@ This is my portfolio site, showcasing my projects and skills in web development.
 To view the site locally, clone the repository and open the `index.html` file in your browser.
 
 ```bash
-git clone https://github.com/yourusername/portfolio-site.git
+git clone https://github.com/Umit0000/portfolio.git
 cd portfolio-site
 open index.html
 ```
