@@ -8,45 +8,60 @@
     <link rel="stylesheet" href="assets/css/index.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="index.html">My Portfolio</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <!-- Navbar (visible over the canvas) -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="index.html"></a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
+                    <a class="nav-link projectButton" href="index.html">Home</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="projects.html">Projects <span class="sr-only">(current)</span></a>
+                    <a class="nav-link projectButton" href="projects.html">Projects <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
+                    <a class="nav-link projectButton" href="contact.html">Contact</a>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <div class="container mt-5">
-        <h1>My Projects</h1>
-        <ul class="list-group">
-            <li class="list-group-item">
-                <a href="https://github.com/yourusername/project1" target="_blank">Project 1</a>
-            </li>
-            <li class="list-group-item">
-                <a href="https://github.com/yourusername/project2" target="_blank">Project 2</a>
-            </li>
-            <li class="list-group-item">
-                <a href="https://github.com/yourusername/project3" target="_blank">Project 3</a>
-            </li>
-            <!-- Add more projects as needed -->
-        </ul>
+    <!-- VHS HUD -->
+    <div class="vhs-hud">
+        <div class="play-icon">PLAY ▶</div>
+        <div class="bottom-hud">
+            <span class="stop-text">STOP            --:--</span>
+            <span class="slp-text">SLP</span>
+        </div>
     </div>
 
-    <script src="assets/js/script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Projects Content (visible above the canvas) -->
+<div class="container mt-5 menu-hud">
+    <h1>Main Menu</h1>
+    <ul id="menu-list" class="list-group">
+        <li class="list-group-item" data-action="function" data-fn="timerRecording">Timer Recording</li>
+        <li class="list-group-item" data-action="function" data-fn="showProjects">Projects</li>
+        <li class="list-group-item" data-action="function" data-fn="clockSetAdjust">Clock Set/Adjust</li>
+        <li class="list-group-item" data-action="function" data-fn="channelSetup">Channel Setup</li>
+        <li class="list-group-item" data-action="function" data-fn="vcrFunctionSetup">VCR Function Setup</li>
+        <li class="list-group-item" data-action="function" data-fn="languageSetup">Language/Lengua/Langue</li>
+    </ul>
+    <hr>
+    <div class="menu-actions">
+        <span>▼▲</span>
+        <span>[Menu/Exit]</span>
+    </div>
+</div>
+
+
+    <audio id="static-noise" autoplay loop>
+    <source src="/assets/audio/508187__skyernaklea__vhs-vcr-static-noise-and-glitches.wav" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+    <!-- Link to the script for VHS static noise and HUD -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="assets/js/vhs.js"></script>
 </body>
 </html>
