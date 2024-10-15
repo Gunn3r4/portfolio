@@ -1,0 +1,217 @@
+/* I just leave my ditched styling here, maybe for future reference or in case i removed something I shouldn't have. */
+
+/* Old VHS Scanlines */
+/* .scanlines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.05),
+        rgba(255, 255, 255, 0.05) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    z-index: 100;
+    animation: scan 10s infinite linear;
+}
+
+@keyframes scan {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100%); }
+} */
+
+/* VHS Filter to give the content a tape-like look */
+/* .vhs-filter {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    filter: contrast(1.2) brightness(1.1) saturate(1.5);
+    animation: vhs-glitch 0.15s infinite;
+}
+
+/* Keyframes to simulate small distortions and shaking */
+/* @keyframes vhs-glitch {
+    0% { transform: translate(1px, 0) skewX(0.5deg); }
+    50% { transform: translate(-1px, -1px) skewX(-0.5deg); }
+    100% { transform: translate(0, 1px) skewX(0.5deg); }
+} */
+
+/* Static Noise overlay */
+/* .vhs-static {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('path/to/static-noise.png');
+    opacity: 0.1;
+    z-index: 10;
+    pointer-events: none;
+    animation: static-flicker 0.2s infinite;
+}
+
+@keyframes static-flicker {
+    0% { opacity: 0.1; }
+    50% { opacity: 0.2; }
+    100% { opacity: 0.15; }
+} */
+
+/* HUD for VHS Recording */
+
+/* .vhs-hud {
+    position: absolute;
+    top: 20px; 
+    left: 20px;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 28px; 
+    z-index: 100;
+    pointer-events: none;
+}
+
+.rec {
+    color: red;
+    font-weight: bold;
+    animation: blink 1s infinite; 
+}
+
+.timestamp {
+    margin-top: 5px;
+    color: white;
+    font-size: 20px;
+}
+
+.hud-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid rgba(255, 255, 255, 0.4); 
+    pointer-events: none;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4); 
+} */
+
+
+/* Camera Lens Blur */
+/* .vhs-camera {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 100px 30px rgba(0, 0, 0, 0.8) inset;
+    z-index: 50;
+    pointer-events: none;
+} */
+
+/* Blinking animation for the REC dot */
+/* @keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+} */
+
+/* Base Styles */
+/* body {
+    background-color: black;
+    font-family: 'Press Start 2P', monospace;
+    color: white;
+    margin: 0;
+    overflow: hidden;
+} */
+
+/* HUD Styles */
+/* .vhs-hud {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.play-icon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    color: white;
+    text-shadow: 2px 2px 3px black;
+}
+
+.bottom-hud {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 100%;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.stop-text, .slp-text {
+    color: white;
+    text-shadow: 2px 2px 3px black;
+}
+
+/* Static Overlay Effect */
+/* .vhs-static {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    opacity: 0.1;    
+    pointer-events: none;
+    z-index: 5;
+}    */
+
+
+/* @keyframes static-flicker {
+    0% { opacity: 0.1; }
+    50% { opacity: 0.2; }
+    100% { opacity: 0.15; }
+}
+
+.vhs-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.05),
+        rgba(255, 255, 255, 0.05) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    animation: vhs-static 0.1s infinite;
+}
+
+@keyframes vhs-static {
+    0% { opacity: 0.2; }
+    50% { opacity: 0.4; }
+    100% { opacity: 0.2; }
+} */
+
+/* .vhs-static-noise {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("/assets/images/test.gif") repeat;
+    opacity: 0.15;
+    z-index: 5;
+    pointer-events: none;
+} */
