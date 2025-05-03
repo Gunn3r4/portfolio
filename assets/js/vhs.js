@@ -159,39 +159,49 @@ document.addEventListener("DOMContentLoaded", function() {
         alert("Language Setup selected!");
     }
 
-    // Custom function to show the projects menu
     function showProjects() {
         const menuList = document.getElementById('menu-list');
-
-        // Clear the existing menu items
+        const projectList = document.getElementById('projectList');
+      
+        // Clear current content
         menuList.innerHTML = '';
-
-        // Add new GitHub project links
-        const projects = [
-            { name: "Project 1", link: "https://github.com/user/project1" },
-            { name: "Project 2", link: "https://github.com/user/project2" },
-            { name: "Project 3", link: "https://github.com/user/project3" }
-        ];
-
-        projects.forEach(project => {
-            const li = document.createElement('li');
-            li.className = 'list-group-item';
-            li.innerHTML = `<a href="${project.link}" target="_blank">${project.name}</a>`;
-            menuList.appendChild(li);
-        });
-
-        // Add a "Back to Main Menu" option
-        const backLi = document.createElement('li');
-        backLi.className = 'list-group-item';
-        backLi.textContent = 'Back to Main Menu';
-        menuList.appendChild(backLi);
-
-        // Reattach the click listener for the "Back to Main Menu" option
-        backLi.addEventListener('click', loadMainMenu);
-
-        selectedItemIndex = -1; // Reset selection
-        initializeMenu(); // Reinitialize menu with new items
-    }
+        projectList.innerHTML = '<p>Loading projects from GitHub...</p>';
+      
+        const username = 'umit000'; // ← your GitHub username
+      
+        fetch(`https://api.github.com/users/${username}/repos`)
+          .then(response => response.json())
+          .then(repos => {
+            projectList.innerHTML = '';
+      
+            repos.forEach(repo => {
+              const container = document.createElement('div');
+              container.classList.add('project');
+              container.style.cursor = 'pointer';
+              container.onclick = () => window.open(repo.html_url, '_blank');
+      
+              container.innerHTML = `
+                <h3 style="margin:0">${repo.name}</h3>
+                <p>${repo.description || 'No description available.'}</p>
+                <p style="color: lightblue;">View project >>> </p>
+              `;
+              projectList.appendChild(container);
+            });
+      
+            const backLi = document.createElement('li');
+            backLi.className = 'list-group-item';
+            backLi.textContent = 'Back to Main Menu';
+            backLi.addEventListener('click', loadMainMenu);
+            menuList.appendChild(backLi);
+            initializeMenu();
+          })
+          .catch(error => {
+            projectList.innerHTML = '<p style="color: red;">Failed to load GitHub projects.</p>';
+            console.error(error);
+          });
+      
+        selectedItemIndex = -1;
+      }      
 
     // Function to reload the main menu
     function loadMainMenu() {
