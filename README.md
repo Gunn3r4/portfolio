@@ -16,7 +16,7 @@ This is my portfolio site, showcasing my projects and skills in web development.
 - Springboot
 - H2
 - Vue
-- Angeler
+- Angular
 - node.js
 
 ## Live Demo

@@ -1,45 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ümit Tafa Portfolio</title>
+  <link rel="stylesheet" href="https://unpkg.com/7.css"> <!-- Windows 95 CSS -->
+  <link rel="stylesheet" href="assets/css/win95.css">
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="#">My Portfolio</a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active"><a class="nav-link" href="#">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="container mt-5">
-        <div class="vhs-content">
-            <div class="row">
-                <div class="col-md-4">
-                    <img src="your-image.jpg" class="img-fluid rounded-circle" alt="Your Image">
-                </div>
-                <div class="col-md-8">
-                    <h1>Ümit Tafa</h1>
-                    <p>blahblahblah.</p>
-                </div>
-            </div>
-        </div>
+  <div class="desktop">
+    <!-- Desktop Icons -->
+    <div class="icon" style="top: 40px; left: 20px;" onclick="toggleWindow('bioWindow')">
+      <img src="assets/images/my_computer.png" alt="My Bio">
+      <div>My Bio</div>
+    </div>
+    <div class="icon" style="top: 120px; left: 20px;" onclick="toggleWindow('projectsWindow')">
+      <img src="assets/images/folder.png" alt="Projects">
+      <div>Projects</div>
+    </div>
+    <div class="icon" style="top: 200px; left: 20px;" onclick="toggleWindow('contactWindow')">
+      <img src="assets/images/address_book.png" alt="Contact">
+      <div>Contact</div>
+    </div>
+    <div class="icon" style="top: 280px; left: 20px;" onclick="toggleWindow('brainWindow')">
+      <img src="assets/images/brain_icon.png" alt="Brain">
+      <div>Brain</div>
     </div>
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="assets/js/index.js"></script> <!-- This will load the neon grid -->
+    <!-- Windows -->
+    <div class="window" id="bioWindow" style="display: none; width: 400px; top: 100px; left: 100px;">
+      <div class="title-bar">
+        <div class="title-bar-text">My Bio</div>
+        <div class="title-bar-controls">
+          <button aria-label="Close" onclick="toggleWindow('bioWindow')"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <p><b>Ümit Tafa</b></p>
+        <p>Creative developer with a love for retro tech, Three.js scenes, glitch effects, and multimedia interfaces. Welcome to my internship portfolio.</p>
+      </div>
+    </div>
+
+    <div class="window" id="projectsWindow" style="display: none; width: 400px; top: 140px; left: 200px;">
+      <div class="title-bar">
+        <div class="title-bar-text">Projects</div>
+        <div class="title-bar-controls">
+          <button aria-label="Close" onclick="toggleWindow('projectsWindow')"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <p>Project list coming soon...</p>
+      </div>
+    </div>
+
+    <div class="window" id="contactWindow" style="display: none; width: 400px; top: 180px; left: 300px;">
+      <div class="title-bar">
+        <div class="title-bar-text">Contact</div>
+        <div class="title-bar-controls">
+          <button aria-label="Close" onclick="toggleWindow('contactWindow')"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <p>Email: umittafa@hotmail.com</p>
+        <p>GitHub: github.com/yourusername</p>
+      </div>
+    </div>
+
+    <div class="window" id="brainWindow" style="display: none; width: 400px; top: 220px; left: 400px;">
+      <div class="title-bar">
+        <div class="title-bar-text">Brain</div>
+        <div class="title-bar-controls">
+          <button aria-label="Close" onclick="toggleWindow('brainWindow')"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <p>Welcome to the Gunner Brain.</p>
+      </div>
+    </div>
+
+    <!-- Taskbar (static placeholder) -->
+    <div class="taskbar">
+      <div class="start-menu">
+        <button class="button">Start</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleWindow(id) {
+      const win = document.getElementById(id);
+      win.style.display = win.style.display === 'none' ? 'block' : 'none';
+    }
+
+    // Make windows draggable
+    document.querySelectorAll('.window').forEach(win => {
+      let isDragging = false, offsetX, offsetY;
+
+      const titleBar = win.querySelector('.title-bar');
+      titleBar.style.cursor = 'move';
+
+      titleBar.addEventListener('mousedown', e => {
+        isDragging = true;
+        offsetX = e.clientX - win.offsetLeft;
+        offsetY = e.clientY - win.offsetTop;
+      });
+
+      document.addEventListener('mousemove', e => {
+        if (!isDragging) return;
+        win.style.left = `${e.clientX - offsetX}px`;
+        win.style.top = `${e.clientY - offsetY}px`;
+      });
+
+      document.addEventListener('mouseup', () => {
+        isDragging = false;
+      });
+    });
+  </script>
 </body>
 </html>
