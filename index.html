@@ -3,79 +3,81 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ümit Tafa Portfolio</title>
-  <link rel="stylesheet" href="https://unpkg.com/7.css">
-  <link rel="stylesheet" href="assets/css/win95.css">
+  <title>Windows 95 Portfolio</title>
+  <link rel="stylesheet" href="assets/css/index.css">
 </head>
 <body>
-  <div class="desktop">
-    <div class="icon" style="top: 40px; left: 20px;" onclick="location.href='about.html'">
-      <img src="assets/images/win95/used/png/my_computer_32x32.png" alt="My Bio">
-      <div>My Bio</div>
-    </div>
-    <div class="icon" style="top: 120px; left: 20px;" onclick="location.href='projects.html'">
-      <img src="assets/images/win95/used/png/folder_32x32.png" alt="Projects">
-      <div>Projects</div>
-    </div>
-    <div class="icon" style="top: 200px; left: 20px;" onclick="location.href='contact.html'">
-      <img src="assets/images/win95/used/png/help_page_32x32.png" alt="Contact">
-      <div>Contact</div>
-    </div>
-    <div class="icon" style="top: 280px; left: 20px;" onclick="location.href='gunnerBrain.html'">
-      <img src="assets/images/win95/used/png/notepad_32x32.png" alt="Brain">
-      <div>Brain</div>
-    </div>
-    <div class="icon" style="top: 360px; left: 20px;" onclick="showAlertBox()">
-      <img src="assets/images/win95/used/png/info_32x32.png" alt="System Dialogs">
-      <div>Dialogs</div>
-    </div>
+  <!-- WIN95 DESKTOP WRAPPER -->
+  <div id="win95-wrapper">
+    <div class="desktop">
+      <div class="icon" style="top: 40px; left: 20px;" onclick="location.href='about.html'">
+        <img src="assets/images/win95/used/png/my_computer_32x32.png" alt="My Bio">
+        <div>MyBio.txt</div>
+      </div>
+      <div class="icon" style="top: 120px; left: 20px;" onclick="location.href='projects.html'">
+        <img src="assets/images/win95/used/png/folder_32x32.png" alt="Projects">
+        <div>Projects.exe</div>
+      </div>
+      <div class="icon" style="top: 200px; left: 20px;" onclick="location.href='contact.html'">
+        <img src="assets/images/win95/used/png/help_page_32x32.png" alt="Contact">
+        <div>Contact</div>
+      </div>
+      <div class="icon" style="top: 360px; left: 20px;" onclick="showAlertBox()">
+        <img src="assets/images/win95/used/png/info_32x32.png" alt="System Dialogs">
+        <div>Dialogs</div>
+      </div>
+      <div class="icon" style="top: 440px; left: 20px;" onclick="openReadMe()">
+        <img src="assets/images/win95/used/png/note_32x32.png" alt="Note">
+        <div>ReadMe.txt</div>
+      </div>
 
-    <div class="taskbar">
-      <div class="start-menu">
-        <button class="button start-button" onclick="toggleStartMenu()">
-          <img src="assets/images/win95/used/png/start.png" alt="Start" style="height: 20px; vertical-align: middle;">
-        </button>
-        <div class="start-dropdown" id="startDropdown" style="display: none;">
-          <ul>
-            <li class="has-submenu">
-              <img src="assets/images/win95/used/png/program_folder_16x16.png"> Programs
-              <ul class="submenu">
-                <li><img src="assets/images/win95/used/png/notepad_16x16.png"> Notepad</li>
-                <li><img src="assets/images/win95/used/png/paint_16x16.png"> Paint</li>
-                <li><img src="assets/images/win95/used/png/iexplore_16x16.png"> Internet Explorer</li>
-              </ul>
-            </li>
-            <li><img src="assets/images/win95/used/png/documents_folder_16x16.png"> Documents</li>
-            <li><img src="assets/images/win95/used/png/settings_16x16.png"> Settings</li>
-            <li><img src="assets/images/win95/used/png/search_folder_16x16.png"> Find</li>
-            <li><img src="assets/images/win95/used/png/help_book_16x16.png"> Help</li>
-            <li><img src="assets/images/win95/used/png/run_16x16.png"> Run...</li>
-            <li onclick="showAlertBox()"><img src="assets/images/win95/used/png/shutdown_16x16.png"> Shut Down...</li>
-          </ul>
+      <!-- Taskbar inside desktop -->
+      <div class="taskbar">
+        <div class="start-menu">
+          <button class="button start-button" onclick="toggleStartMenu()">
+            <img src="assets/images/win95/used/png/start2.png" alt="Start" style="height: 20px; vertical-align: middle;">
+          </button>
+          <div class="start-dropdown" id="startDropdown" style="display: none;">
+            <ul>
+              <li class="has-submenu">
+                <img src="assets/images/win95/used/png/program_folder_16x16.png"> Programs
+                <ul class="submenu">
+                  <li><img src="assets/images/win95/used/png/notepad_16x16.png"> Notepad</li>
+                  <li><img src="assets/images/win95/used/png/paint_16x16.png"> Paint</li>
+                  <li><img src="assets/images/win95/used/png/iexplore_16x16.png"> Internet Explorer</li>
+                </ul>
+              </li>
+              <li><img src="assets/images/win95/used/png/documents_folder_16x16.png"> Documents</li>
+              <li><img src="assets/images/win95/used/png/settings_16x16.png"> Settings</li>
+              <li><img src="assets/images/win95/used/png/search_folder_16x16.png"> Find</li>
+              <li><img src="assets/images/win95/used/png/help_book_16x16.png"> Help</li>
+              <li><img src="assets/images/win95/used/png/run_16x16.png"> Run...</li>
+              <li onclick="showAlertBox()"><img src="assets/images/win95/used/png/shutdown_16x16.png"> Shut Down...</li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Alert Box Window -->
-    <div class="window" id="alertWindow" style="display: none; position: absolute; width: 300px; top: 100px; left: 100px; z-index: 50;">
-      <div class="title-bar">
-        <div class="title-bar-text">System Alert</div>
-        <div class="title-bar-controls">
-          <button aria-label="Close" onclick="hideAlertBox()"></button>
+      <!-- Alert Box Window -->
+      <div class="window" id="alertWindow" style="display: none; position: absolute; width: 300px; top: 100px; left: 100px; z-index: 50;">
+        <div class="title-bar">
+          <div class="title-bar-text">System Alert</div>
+          <div class="title-bar-controls">
+            <button aria-label="Close" onclick="hideAlertBox()"></button>
+          </div>
         </div>
-      </div>
-      <div class="window-body">
-        <div style="display: flex; align-items: flex-start;">
-          <img src="assets/images/win95/used/png/warning_32x32.png" alt="Warning" style="width: 32px; height: 32px; margin-right: 10px;">
-          <p style="margin: 0;">This is a simulated Windows 95 alert box. Something retro is happening!</p>
-        </div>
-        <div style="margin-top: 10px; text-align: right;">
-          <button onclick="hideAlertBox()">OK</button>
+        <div class="window-body">
+          <div style="display: flex; align-items: flex-start;">
+            <img src="assets/images/win95/used/png/warning_32x32.png" alt="Warning" style="width: 32px; height: 32px; margin-right: 10px;">
+            <p style="margin: 0;">This is a simulated Windows 95 alert box. Something retro is happening!</p>
+          </div>
+          <div style="margin-top: 10px; text-align: right;">
+            <button onclick="hideAlertBox()">OK</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
   <script src="assets/js/index.js"></script>
 </body>
 </html>

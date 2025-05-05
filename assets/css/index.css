@@ -1,281 +1,184 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #000; /* For outer background */
+}
 
-@font-face {
-    font-family: 'VCR OSD Mono';
-    src: url("/assets/fonts/VCR_OSD_MONO_1.001.ttf") format('truetype');
+.desktop {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: #008080 url('your-wallpaper-path.png') no-repeat center center;
+  background-size: cover;
+  overflow: hidden;
 }
 
 
-/* Navbar styling to ensure it's on top of the Three.js canvas */
-.navbar {
-    z-index: 10; /* Make sure the navbar stays above the canvas */
-    position: relative;
-}
-
-/* Ensure that the Three.js canvas is positioned behind the navbar */
-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0; /* Set behind the navbar */
-    display: block;
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background-color: #c0c0c0;
+  border-top: 2px solid white;
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  z-index: 999;
 }
 
 
-/* Body Styling */
-body {
-    background-color: black;
-    font-family: 'VCR OSD Mono', monospace; /* Use a retro font */
-    color: white;
-    margin: 0;
-    overflow: hidden;
+.icon {
+  position: absolute;
+  width: 64px;
+  text-align: center;
+  cursor: pointer;
+  color: white;
+  user-select: none;
+  font-family: 'Tahoma', sans-serif;
+  font-size: 12px;
 }
 
-audio {
-    display: none; /* Hide the audio player */
+.icon img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 4px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Old VHS Flicker Text Effect */
-.vhs-text {
-    font-size: 3rem;
-    color: #fff;
-    position: relative;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    animation: flicker 0.15s infinite alternate;
+.icon div {
+  white-space: nowrap;
+  text-shadow: 1px 1px 1px black;
 }
 
-@keyframes flicker {
-    0% { opacity: 0.9; }
-    50% { opacity: 0.6; transform: translate(1px, 0); }
-    100% { opacity: 0.8; transform: translate(-1px, 0); }
+.icon:hover div {
+  color: yellow;
 }
 
-
-/* VHS Static Noise using a GIF */
-.vhs-content {
-    position: relative; /* Positioning relative to contain the static effects */
+.start-menu {
+  position: relative;
 }
 
-
-/* Horizontal Glitch Line */
-.vhs-horizontal-glitch {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: white;
-    opacity: 0.3;
-    z-index: 6;
+.start-button {
+  font-family: 'Tahoma', sans-serif;
+  font-size: 14px;
+  background-color: var(--win95-gray);
+  border: 2px outset var(--win95-light);
+  padding: 2px 6px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
-
-/* Button Neon Glow */
-.button-neon {
-    background-color: transparent;
-    border: 2px solid #ff33cc;
-    padding: 10px 20px;
-    color: #ff33cc;
-    font-size: 18px;
-    transition: all 0.4s ease;
+.start-button img {
+  height: 20px;
+  vertical-align: middle;
+  width: 18px;
+  height: 18px;
+  image-rendering: pixelated;
 }
 
-.button-neon:hover {
-    color: #00ffff;
-    box-shadow: 0 0 10px #ff33cc, 0 0 20px #ff33cc, 0 0 30px #ff33cc;
-    border-color: #00ffff;
+:root {
+  --win95-gray: #c0c0c0;
+  --win95-dark: #808080;
+  --win95-light: #ffffff;
+  --win95-border: #000000;
+  --win95-blue: #000080;
 }
 
-/* VHS HUD styling (applies to the projects page) */
-.vhs-hud {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 10; /* Ensure HUD stays above the static noise */
-    pointer-events: none; /* Prevent interaction */
+.start-dropdown {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  background-color: var(--win95-gray);
+  border-top: 2px solid var(--win95-light);
+  border-left: 2px solid var(--win95-light);
+  border-bottom: 2px solid var(--win95-dark);
+  border-right: 2px solid var(--win95-dark);
+  width: 220px;
+  font-family: 'Tahoma', sans-serif;
+  font-size: 14px;
+  padding: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
 }
 
-.play-icon {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    font-size: 32px; /* Increase font size for visibility */
-    color: white;
-    text-shadow: 2px 2px 3px black;
-    font-family: 'VCR OSD Mono', monospace;
+.start-dropdown::before {
+  content: "Windows95";
+  display: block;
+  width: 24px;
+  background-color: var(--win95-blue);
+  color: white;
+  writing-mode: vertical-rl;
+  text-align: center;
+  font-weight: bold;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1;
 }
 
-.bottom-hud {
-    position: absolute;
-    bottom: 60px; /* Adjust this value to move it higher */
-    left: 0;
-    right: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between; /* Align STOP on left and SLP on right */
-    padding: 0 20px;
-    font-size: 24px;
-    font-family: 'VCR OSD Mono', monospace;
-    color: white;
+.start-dropdown ul {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+  width: 100%;
 }
 
-.stop-text {
-    text-shadow: 2px 2px 3px black;
+.start-dropdown li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+  background-color: var(--win95-gray);
 }
 
-.slp-text {
-    text-shadow: 2px 2px 3px black;
+.start-dropdown li:hover {
+  background-color: var(--win95-blue);
+  color: white;
 }
 
-/* Ensure the Three.js canvas stays behind the content */
-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1; /* Push the canvas behind all other content */
-    display: block;
+.start-dropdown li:hover img {
+  filter: brightness(1.2);
 }
 
-
-/* Ensure that the main content is layered above the canvas */
-.container, .vhs-content {
-    position: relative;
-    z-index: 1; /* Higher z-index than the canvas */
+.submenu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background-color: var(--win95-gray);
+  border-top: 2px solid var(--win95-light);
+  border-left: 2px solid var(--win95-light);
+  border-bottom: 2px solid var(--win95-dark);
+  border-right: 2px solid var(--win95-dark);
+  width: 180px;
+  z-index: 200;
 }
 
-/* Center the entire navbar */
-.navbar {
-    display: flex;
-    justify-content: center; /* Center the navbar content */
-    align-items: center; /* Vertically center the content */
-    width: 100%; /* Ensure navbar stretches full width */
-    background-color: transparent; /* Keep transparent or change as needed */
+.has-submenu:hover > .submenu {
+  display: block;
 }
 
-/* Center the list of navbar items */
-.navbar-nav {
-    display: flex;
-    justify-content: center; /* Center the list itself */
-    width: 100%; /* Make sure the nav items span the full width */
+.submenu li {
+  font-size: 13px;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-/* Style each navbar item and ensure spacing */
-.nav-item {
-    margin: 0 10px; /* Spacing between buttons */
+.submenu li:hover {
+  background-color: var(--win95-blue);
+  color: white;
 }
-
-/* Style the projectButton (as you had before) */
-.projectButton {
-    background-color: #0011ff !important; /* Solid blue background */
-    color: white !important; /* White text */
-    font-family: 'VCR OSD Mono', monospace; /* Retro font */
-    font-size: 18px;
-    text-transform: uppercase;
-    padding: 10px 20px; /* Spacing inside the buttons */
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
-    text-align: center;
-    cursor: pointer;
-    margin: 10px; /* Spacing between buttons */
-    display: inline-block;
-    text-decoration: none; /* Remove underline from links */
-}
-
-.projectButton:hover {
-    background-color: white !important; /* Darker blue on hover */
-    box-shadow: 0 0 15px rgba(255, 255, 255, 1); /* Increase glow on hover */
-    color: #0011ff !important; /* Change text color on hover */
-}
-
-.nav-item {
-    margin: 0 10px; /* Add spacing between the buttons */
-}
-
-
-
-/* Main Menu HUD Styling */
-.menu-hud {
-    width: 80%; /* Adjust width to fit your design */
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #0011ff; /* Transparent blue background for a retro effect */
-    /* border: 2px solid white; */
-    font-family: 'VCR OSD Mono', monospace;
-    color: white;
-    text-align: center;
-    position: relative;
-    margin-top: 50px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6); /* Slight glow effect */
-}
-
-.menu-hud h2 {
-    font-size: 32px;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-}
-
-.menu-hud ul {
-    list-style-type: none;
-    padding: 0;
-    font-size: 24px;
-    line-height: 1.8;
-    margin-bottom: 30px;
-}
-
-.menu-hud ul li {
-    padding: 5px 0;
-}
-
-.menu-hud ul li.selected::before {
-    content: '▶ '; /* Arrow symbol before the selected item */
-    color: white;
-}
-
-/* Horizontal rule (styled) */
-.menu-hud hr {
-    border: none;
-    border-top: 2px solid white;
-    margin-bottom: 20px;
-}
-
-.menu-actions {
-    display: flex;
-    justify-content: space-between;
-    font-size: 18px;
-    text-transform: uppercase;
-}
-
-.list-group-item {
-    cursor: pointer;
-    color: white;
-    background-color: transparent;
-    border: none;
-    font-family: 'VCR OSD Mono', monospace;
-}
-
-.list-group-item.selected {
-    color: yellow;
-    font-weight: bold;
-}
-
-.list-group-item.selected::before {
-    content: '▶ '; /* Arrow indicator for selected item */
-    color: yellow;
-}
-
-.list-group-item:hover {
-    color: yellow;
-    font-weight: bold;
-}
-
-.list-group-item:hover::before {
-    content: '▶ ';
-    color: white;
-}
-

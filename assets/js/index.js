@@ -1,30 +1,94 @@
-// Draggable Desktop Icons
-document.querySelectorAll('.icon').forEach(icon => {
-  icon.addEventListener('mousedown', function (e) {
-    let shiftX = e.clientX - icon.getBoundingClientRect().left;
-    let shiftY = e.clientY - icon.getBoundingClientRect().top;
+// DRAGGABLE ICON GRID SETUP
+const gridSize = 88;
+const gridTop = 16;
+const gridLeft = 20;
+const icons = document.querySelectorAll('.icon');
 
-    function moveAt(pageX, pageY) {
-      icon.style.left = pageX - shiftX + 'px';
-      icon.style.top = pageY - shiftY + 'px';
-    }
-
-    function onMouseMove(e) {
-      moveAt(e.pageX, e.pageY);
-    }
-
-    document.addEventListener('mousemove', onMouseMove);
-
-    icon.onmouseup = function () {
-      document.removeEventListener('mousemove', onMouseMove);
-      icon.onmouseup = null;
-    };
-  });
-
-  icon.ondragstart = () => false;
+// Snap icons to grid on load
+icons.forEach(icon => {
+  const top = parseInt(icon.style.top, 10);
+  const left = parseInt(icon.style.left, 10);
+  const snappedTop = Math.round((top - gridTop) / gridSize) * gridSize + gridTop;
+  const snappedLeft = Math.round((left - gridLeft) / gridSize) * gridSize + gridLeft;
+  icon.style.top = `${snappedTop}px`;
+  icon.style.left = `${snappedLeft}px`;
 });
 
-// Alert Box Functions
+icons.forEach(icon => {
+  let offsetX, offsetY;
+  let dragging = false;
+  let moved = false;
+
+  icon.addEventListener('pointerdown', e => {
+    e.preventDefault();
+    offsetX = e.clientX - icon.offsetLeft;
+    offsetY = e.clientY - icon.offsetTop;
+    dragging = true;
+    moved = false;
+    icon.style.cursor = 'move';
+
+    const onPointerMove = e => {
+      if (!dragging) return;
+      const rawX = e.clientX - offsetX;
+      const rawY = e.clientY - offsetY;
+      const snappedX = Math.round((rawX - gridLeft) / gridSize) * gridSize + gridLeft;
+      const snappedY = Math.round((rawY - gridTop) / gridSize) * gridSize + gridTop;
+
+      const isOccupied = Array.from(icons).some(other => {
+        if (other === icon) return false;
+        return other.style.left === `${snappedX}px` && other.style.top === `${snappedY}px`;
+      });
+
+      if (!isOccupied) {
+        icon.style.left = `${snappedX}px`;
+        icon.style.top = `${snappedY}px`;
+      }
+
+      moved = true;
+    };
+
+    const onPointerUp = () => {
+      dragging = false;
+      icon.style.cursor = 'default';
+      if (moved) {
+        icon.dataset.preventClick = 'true';
+        setTimeout(() => {
+          icon.dataset.preventClick = 'false';
+        }, 100);
+      }
+      window.removeEventListener('pointermove', onPointerMove);
+      window.removeEventListener('pointerup', onPointerUp);
+    };
+
+    window.addEventListener('pointermove', onPointerMove);
+    window.addEventListener('pointerup', onPointerUp);
+  });
+
+  icon.addEventListener('click', e => {
+    if (icon.dataset.preventClick === 'true') {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  });
+});
+
+// START MENU LOGIC
+function toggleStartMenu() {
+  const menu = document.getElementById('startDropdown');
+  const visible = menu.style.display === 'block';
+  document.querySelectorAll('.start-dropdown').forEach(el => el.style.display = 'none');
+  menu.style.display = visible ? 'none' : 'block';
+}
+
+window.addEventListener('click', e => {
+  const button = document.querySelector('.start-button');
+  const dropdown = document.getElementById('startDropdown');
+  if (!dropdown.contains(e.target) && !button.contains(e.target)) {
+    dropdown.style.display = 'none';
+  }
+});
+
+// ALERT WINDOW FUNCTIONS
 function showAlertBox() {
   document.getElementById('alertWindow').style.display = 'block';
 }
@@ -33,82 +97,28 @@ function hideAlertBox() {
   document.getElementById('alertWindow').style.display = 'none';
 }
 
-// Draggable Alert Window
+// DRAGGABLE ALERT WINDOW
 window.addEventListener('DOMContentLoaded', () => {
   const win = document.getElementById('alertWindow');
   const titleBar = win.querySelector('.title-bar');
   let isDragging = false, offsetX = 0, offsetY = 0;
 
-  titleBar.addEventListener('mousedown', (e) => {
+  titleBar.addEventListener('pointerdown', e => {
     isDragging = true;
     offsetX = e.clientX - win.offsetLeft;
     offsetY = e.clientY - win.offsetTop;
   });
 
-  document.addEventListener('mousemove', (e) => {
+  const onMove = e => {
     if (!isDragging) return;
     win.style.left = `${e.clientX - offsetX}px`;
     win.style.top = `${e.clientY - offsetY}px`;
-  });
+  };
 
-  document.addEventListener('mouseup', () => {
+  const onUp = () => {
     isDragging = false;
-  });
-});
+  };
 
-// index.js
-
-function toggleStartMenu() {
-  const startMenu = document.getElementById('startDropdown');
-  const isVisible = startMenu.style.display === 'block';
-
-  document.querySelectorAll('.start-dropdown').forEach(drop => {
-    drop.style.display = 'none';
-  });
-
-  startMenu.style.display = isVisible ? 'none' : 'block';
-}
-
-function hideAlertBox() {
-  document.getElementById('alertWindow').style.display = 'none';
-}
-
-function showAlertBox() {
-  document.getElementById('alertWindow').style.display = 'block';
-}
-
-window.addEventListener('click', function (e) {
-  const startButton = document.querySelector('.start-button');
-  const startDropdown = document.getElementById('startDropdown');
-  if (!startDropdown.contains(e.target) && !startButton.contains(e.target)) {
-    startDropdown.style.display = 'none';
-  }
-});
-
-// Grid snap dragging for desktop icons
-const gridSize = 80;
-const icons = document.querySelectorAll('.icon');
-
-icons.forEach(icon => {
-  let offsetX, offsetY;
-
-  icon.addEventListener('mousedown', e => {
-    offsetX = e.clientX - icon.offsetLeft;
-    offsetY = e.clientY - icon.offsetTop;
-
-    function onMouseMove(e) {
-      let newLeft = Math.round((e.clientX - offsetX) / gridSize) * gridSize;
-      let newTop = Math.round((e.clientY - offsetY) / gridSize) * gridSize;
-      icon.style.left = newLeft + 'px';
-      icon.style.top = newTop + 'px';
-    }
-
-    function onMouseUp() {
-      document.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mouseup', onMouseUp);
-    }
-
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
-  });
+  window.addEventListener('pointermove', onMove);
+  window.addEventListener('pointerup', onUp);
 });
