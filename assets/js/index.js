@@ -4,7 +4,6 @@ const gridTop = 16;
 const gridLeft = 20;
 const icons = document.querySelectorAll('.icon');
 
-// Snap icons to grid on load
 icons.forEach(icon => {
   const top = parseInt(icon.style.top, 10);
   const left = parseInt(icon.style.left, 10);
@@ -121,4 +120,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener('pointermove', onMove);
   window.addEventListener('pointerup', onUp);
+
+  // CLOCK FUNCTIONALITY
+  const clock = document.getElementById('taskbar-clock');
+  function updateClock() {
+    const now = new Date();
+    clock.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
 });
